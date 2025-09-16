@@ -1,0 +1,31 @@
+<div class="header-container">
+  <!-- Left -->
+  <div class="header-left">
+    <span class="icon" (click)="router.navigate(['/movies'])">🎞🎥🍿🎬</span>
+    <span class="greeting" *ngIf="authService.getUsername()">Hi {{ authService.getUsername() }} 👋</span>
+  </div>
+
+  <!-- Right -->
+  <div class="header-right">
+
+    <button class="users-btn" *ngIf="authService.isAdmin()" (click)="router.navigate(['/users'])">
+      👤 Users
+    </button>
+    <button class="logout-btn" (click)="openLogoutDialog()" *ngIf="authService.checkLogin()">
+      🚪 Logout
+    </button>
+    <button class="logout-btn" (click)="authService.flip()" *ngIf="!authService.checkLogin()">
+      {{authService.status}}
+    </button>
+  </div>
+</div>
+
+<!-- Native Dialog -->
+<dialog id="logoutDialog" class="logout-dialog">
+  <h2>Confirm Logout</h2>
+  <p>Do you want to log out?</p>
+  <div class="dialog-actions">
+    <button (click)="closeDialog()">No</button>
+    <button class="confirm" (click)="confirmLogout()">Yes</button>
+  </div>
+</dialog>

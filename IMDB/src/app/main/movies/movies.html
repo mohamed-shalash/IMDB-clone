@@ -1,0 +1,29 @@
+<div class="darkMode" class="movies-container">
+  <header class="header">
+    <input [(ngModel)]="searchTerm" placeholder="Search movies..." class="search"/>
+    <button (click)="searchMovies(searchTerm)">Search</button>
+    <button (click)="addMovie()" *ngIf="authService.isAdmin()">➕ Add Movie</button>
+
+  </header>
+
+  <div class="movies-grid">
+    <div *ngFor="let movie of movies" class="movie-card">
+      <img [src]="movie.poster" 
+      alt="{{ movie.title }}" 
+      (click)="goToMovie(movie.imdbId)" 
+           class="clickable">
+      <h3>{{ movie.title }}</h3>
+      <p>{{ movie.year }} • {{ movie.type }}</p>
+      <button (click)="removeMovie(movie.imdbId)" *ngIf="authService.isAdmin()"> ❌ Remove</button>
+    </div>
+  </div>
+
+  <footer class="pagination">
+    <button (click)="currentPage = currentPage - 1; loadMovies(currentPage-1, pageSize)" [disabled]="currentPage === 1">⬅ Prev</button>
+    <span>Page {{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="currentPage = currentPage + 1; loadMovies(currentPage-1, pageSize)" [disabled]="currentPage === totalPages">Next ➡</button>
+  </footer>
+</div>
+
+
+

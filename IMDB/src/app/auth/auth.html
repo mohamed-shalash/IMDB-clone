@@ -1,0 +1,6 @@
+<div *ngIf="authService.flag">
+  <app-login></app-login>
+</div>
+<div *ngIf="!authService.flag">
+  <app-register></app-register>
+</div>

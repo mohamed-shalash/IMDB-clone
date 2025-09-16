@@ -1,0 +1,56 @@
+<div class="users-container">
+  <header class="header">
+    <div style="width: 50%;">
+      <input [(ngModel)]="searchTerm" placeholder="Search users..." />
+      <button style="margin-left: 10%;" (click)="findByUser(searchTerm)">search</button>
+    </div>
+    <button (click)="addUserPopup()">➕ Add User</button>
+  </header>
+
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user?.username }}</td>
+        <td>{{ user?.role }}</td>
+        <td>
+          <button (click)="removeUser(user.id)" *ngIf="authService.getUsername() !== user?.username">❌ Remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer class="pagination">
+    <button (click)="currentPage = currentPage - 1; loadUsers(currentPage)" [disabled]="currentPage === 1">⬅ Prev</button>
+    <span>Page {{ currentPage }} / {{ totalPages }}</span>
+    <button (click)="currentPage = currentPage + 1; loadUsers(currentPage)" [disabled]="currentPage === totalPages">Next ➡</button>
+  </footer>
+
+  <!-- Popup Modal -->
+  <div class="popup" *ngIf="showPopup">
+    <div class="popup-content">
+      <h3>{{ editingUser ? 'Update User' : 'Add Admin User' }}</h3>
+
+      <input [(ngModel)]="username" placeholder="Username" />
+
+      <!--<select [(ngModel)]="newUser.role">
+        <option value="USER">USER</option>
+        <option value="ADMIN">ADMIN</option>
+      </select>-->
+
+      <input [(ngModel)]="password" type="password" placeholder="Password" />
+      <input [(ngModel)]="confirmPassword" type="password" placeholder="Confirm Password" />
+
+      <div class="popup-actions">
+        <button (click)="saveUser(username, password)">✅ Save</button>
+        <button (click)="closePopup()">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

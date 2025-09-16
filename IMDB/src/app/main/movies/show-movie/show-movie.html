@@ -1,0 +1,24 @@
+<div class="movie-details">
+  <img [src]="movie?.poster" alt="{{ movie?.title }}">
+  <h2>{{ movie?.title }}</h2>
+  <p>{{ movie?.year }} • {{ movie?.type }}</p>
+
+
+  <div class="stars">
+    <ng-container *ngFor="let star of [1,2,3,4,5]">
+      <span [class.filled]="star <= ratings">★</span>
+    </ng-container>
+    <span class="avg-text">Avg: {{ ratings | number:'1.1-1' }}</span>
+  </div>
+
+  <h3>Your Rating</h3>
+  <div class="stars clickable">
+    <ng-container *ngFor="let star of [1,2,3,4,5]">
+      <span 
+        [class.filled]="star <= userRating"
+        (click)="rateMovie(star)"
+        >★</span>
+    </ng-container>
+    
+  </div>
+</div>

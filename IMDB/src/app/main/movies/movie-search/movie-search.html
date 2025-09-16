@@ -1,0 +1,15 @@
+<div class="movie-search-container">
+  <div class="search-bar">
+    <input placeholder="Search movies..." class="search" [(ngModel)]="searchTerm" />
+    <button (click)="searchMovies(searchTerm)" class="search-btn">🔍 Search</button>
+  </div>
+
+  <div class="movies-grid">
+    <div *ngFor="let movie of allMovies" class="movie-card">
+      <img [src]="movie.Poster" alt="{{ movie.Title }}">
+      <h3>{{ movie.Title }}</h3>
+      <p>{{ movie.Year }} • {{ movie.Type }}</p>
+      <button (click)="addMovie(movie.imdbID)">➕ Add</button>
+    </div>
+  </div>
+</div>
