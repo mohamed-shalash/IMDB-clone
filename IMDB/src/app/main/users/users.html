@@ -20,7 +20,7 @@
         <td>{{ user?.username }}</td>
         <td>{{ user?.role }}</td>
         <td>
-          <button (click)="removeUser(user.id)" *ngIf="authService.getUsername() !== user?.username">❌ Remove</button>
+          <button (click)="removeUser(user.id)" *ngIf="user?.id && authService.getUserId() !== user?.id">❌ Remove</button>
         </td>
       </tr>
     </tbody>

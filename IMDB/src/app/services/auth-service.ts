@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
 export interface JwtPayload {
+  id: string;
   sub: string;
   role: string;
   exp: number;
@@ -56,7 +57,31 @@ export class AuthService {
   }
 
 
+  getUsername(): String | null {
+    const token = this.getToken();
+    if (!token) return null;
 
+    try {
+      const decoded = jwtDecode<JwtPayload>(token);
+      return decoded.sub;
+    } catch (err) {
+      console.error('JWT Decode Error:', err);
+      return null;
+    }
+  }
+
+  getUserId(): string {
+    const token = this.getToken();
+    if (!token) return "-1";
+
+    try {
+      const decoded = jwtDecode<JwtPayload>(token);
+      return decoded.id;
+    } catch (err) {
+      console.error('JWT Decode Error:', err);
+      return "-1";
+    }
+  }
 
   private setToken(token: string) {
     if (typeof window !== 'undefined') {
@@ -106,16 +131,5 @@ export class AuthService {
     return this.getRole() === 'admin';
   }
   
-  getUsername(): String | null {
-    const token = this.getToken();
-    if (!token) return null;
 
-    try {
-      const decoded = jwtDecode<JwtPayload>(token);
-      return decoded.sub;
-    } catch (err) {
-      console.error('JWT Decode Error:', err);
-      return null;
-    }
-  }
 }

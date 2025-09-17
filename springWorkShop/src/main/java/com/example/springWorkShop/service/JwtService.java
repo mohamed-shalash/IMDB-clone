@@ -39,7 +39,7 @@ public class JwtService {
                 .next()
                 .getAuthority();
 
-
+        if (userDetails instanceof User user) extraClaims.put("id", user.getId());
         extraClaims.put("role", role);
         return Jwts.builder().setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())

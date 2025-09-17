@@ -23,8 +23,19 @@ error: string = '';
 
 
   onRegister() {
-    if(this.password !== this.confirmPassword) {
+    if(this.username.trim() === '') {
+      this.error = "Username is required";
+      alert(this.error);
+      return;
+    }
+    else if(this.password.trim() === '') {
+      this.error = "Password is required";
+      alert(this.error);
+      return;
+    }
+    else if(this.password !== this.confirmPassword) {
       this.error = "Passwords do not match";
+      alert(this.error);
       return;
     }
     this.authService.register(this.username, this.password).subscribe({

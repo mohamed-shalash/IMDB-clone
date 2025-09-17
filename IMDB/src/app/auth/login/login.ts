@@ -19,6 +19,16 @@ error: string = '';
   constructor(public authService: AuthService, private router: Router) {  }
 
 onLogin() {
+   if(this.username.trim() === '') {
+      this.error = "Username is required";
+      alert(this.error);
+      return;
+    }
+    else if(this.password.trim() === '') {
+      this.error = "Password is required";
+      alert(this.error);
+      return;
+    }
     this.authService.login(this.username, this.password).subscribe({
       next: () => {
         this.router.navigate(['/movies']); 
