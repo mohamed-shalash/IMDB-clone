@@ -4,7 +4,11 @@ A full-stack IMDB-like web application built with **Angular** (frontend) and **S
 The app allows users to search movies, view details, and rate them, while admins have additional control over movies and users.
 
 ---
+## 🎥 Demo
 
+[![Watch the demo](https://img.youtube.com/vi/AS8XkDAojc0/maxresdefault.jpg)](https://www.youtube.com/watch?v=AS8XkDAojc0)
+
+---
 ## 🚀 Features
 
 ### 👥 Users
