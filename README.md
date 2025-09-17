@@ -8,8 +8,6 @@ The app allows users to search movies, view details, and rate them, while admins
 
 [![Watch the demo](https://img.youtube.com/vi/AS8XkDAojc0/maxresdefault.jpg)](https://www.youtube.com/watch?v=AS8XkDAojc0)
 
-## 🎥 Demo
-
 👉 [Watch the demo on YouTube](https://www.youtube.com/watch?v=AS8XkDAojc0)
 ---
 ## 🚀 Features
